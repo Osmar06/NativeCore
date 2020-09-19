@@ -23,7 +23,7 @@ export default MainLayout = ({
   style,
 }) => {
   const getElement = () =>
-    loading ? <Spinner color={theme.primaryColor} /> : children;
+    loading ? <Spinner color={theme.primary} /> : children;
   return (
     <Container>
       {!hideHeader && (
@@ -41,7 +41,9 @@ export default MainLayout = ({
           <Right />
         </Header>
       )}
-      <Content style={style}>{getElement()}</Content>
+      <Content style={style} padder>
+        {getElement()}
+      </Content>
     </Container>
   );
 };

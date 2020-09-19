@@ -3,15 +3,15 @@ export const Uris = {
 };
 
 const createApiUsers = (api) => {
-  const getUsers = (params) => {
+  const get = (params) => {
     const {perPage = 50} = params || {};
     return api.get(`${Uris.USERS}?per_page=${perPage}`);
   };
-  const getUser = (id) => api.get(`${Uris.USERS}/${id}`);
+  const getById = (id) => api.get(`${Uris.USERS}/${id}`);
 
   return {
-    getUsers,
-    getUser,
+    get,
+    getById,
   };
 };
 

@@ -1,7 +1,6 @@
-import { action } from "easy-peasy";
-import { Status } from "../../constants";
-import { showErrorToast } from "../../components/toast";
-
+import {action} from 'easy-peasy';
+import {Status} from '../../constants';
+import {showError} from '../../components/toast';
 
 const BaseModel = () => ({
   status: Status.NOT_STARTED,
@@ -12,9 +11,9 @@ const BaseModel = () => ({
     Object.assign(state, extra);
   }),
   showError: action((state, message) => {
-    state.error = message
-    showErrorToast(message);
-  })
+    state.error = message;
+    showError(message);
+  }),
 });
 
 export default BaseModel;

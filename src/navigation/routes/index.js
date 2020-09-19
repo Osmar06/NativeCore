@@ -5,8 +5,9 @@ const Routes = {
   LOGIN: 'LOGIN',
   HOME: 'HOME',
   MAIN_STACK: 'MAIN_STACK',
-  USER: 'USER',
-  RESOURCE: 'RESOURCE',
+  USER_DETAIL: 'USER_DETAIL',
+  USERS: 'USERS',
+  RESOURCES: 'RESOURCES',
 };
 
 export default Routes;

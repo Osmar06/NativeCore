@@ -5,7 +5,6 @@ import apiMonitor from './monitor';
 import createApiAuth from './auth';
 import createApiResources from './resources';
 import createApiUsers from './users';
-
 const createApiClient = (baseURL = API_BASE_URL) => {
   let baseApi = create({
     baseURL,
@@ -25,16 +24,11 @@ const createApiClient = (baseURL = API_BASE_URL) => {
   const setAuthorizationHeader = (accessToken) =>
     baseApi.setHeader('Authorization', `Bearer ${accessToken}`);
 
-  //Define API functions
-  const apiAuth = createApiAuth(baseApi);
-  const apiResources = createApiResources(baseApi);
-  const apiUsers = createApiUsers(baseApi);
-
   return {
     setAuthorizationHeader,
-    ...apiAuth,
-    ...apiResources,
-    ...apiUsers,
+    auth: createApiAuth(baseApi),
+    resources: createApiResources(baseApi),
+    users: createApiUsers(baseApi),
   };
 };
 

@@ -1,6 +1,6 @@
 import {Platform} from 'react-native';
 
-export const isAndroid = Platform.OS === 'android' ? true : false;
+export const isAndroid = Platform.OS === 'android';
 export const isIos = !isAndroid;
 
 export const AppState = {
@@ -16,8 +16,13 @@ export const Locales = {
 };
 
 export const Status = {
-	SUCCESS: "SUCCESS",
-	NOT_STARTED: "NOT_STARTED",
-	FETCHING: "FETCHING",
-	FAILED: "FAILED"
-}
+  SUCCESS: 'SUCCESS',
+  NOT_STARTED: 'NOT_STARTED',
+  FETCHING: 'FETCHING',
+  FAILED: 'FAILED',
+};
+
+export const Storage = {
+  LOCALE: 'locale',
+  CREDENTIALS: 'credentials',
+};

@@ -1,9 +1,13 @@
 export default {
-    primaryColor: '#3F51B5',
-    infoColor: '#62B1F6',
-    succesColor: '#5cb85c',
-    dangerColor: '#d9534f',
-    warningColor: '#f0ad4e',
-    darkColor: '#000',
-    lightColor: '#a9a9a9'
-}
+  colors: {
+    primary: '#3F51B5',
+    info: '#62B1F6',
+    success: '#5cb85c',
+    danger: '#d9534f',
+    warning: '#f0ad4e',
+    dark: '#000',
+    light: '#a9a9a9',
+    white: '#FFF',
+  },
+  iconsType: 'MaterialIcons',
+};

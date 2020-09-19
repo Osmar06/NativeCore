@@ -41,7 +41,7 @@ const renderItem = ({item}) => {
 
 export default AppIntroScreen = () => {
   const onDone = () => {
-    NavigationService.navigate(Routes.LOGIN);
+    NavigationService.navigateAndReset(Routes.LOGIN);
   };
 
   return (

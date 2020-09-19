@@ -1,15 +1,14 @@
 import React, {useEffect} from 'react';
-import BasicLayout from '../layout/BasicLayout';
-import {Form, Item, Input, Label, Thumbnail} from 'native-base';
+import {MainLayout} from '..';
+import {List, ListItem, Text} from 'native-base';
 import {useStoreActions, useStoreState} from 'easy-peasy';
-import {Image} from 'react-native';
 import {Status} from '../../constants';
 
 export default ResourceScreen = () => {
-  const getData = useStoreActions((actions) => actions.resource.getData);
+  const getData = useStoreActions((actions) => actions.resource.fetch);
 
-  const {user = {}, status} = useStoreState((state) => ({
-    user: state.resource.data,
+  const {resources = [], status} = useStoreState((state) => ({
+    resources: state.resource.data,
     status: state.resource.status,
   }));
 
@@ -19,31 +18,16 @@ export default ResourceScreen = () => {
     getData();
   }, []);
 
+  const getItems = () =>
+    resources.map((item, index) => (
+      <ListItem key={index}>
+        <Text>{item.name}</Text>
+      </ListItem>
+    ));
+
   return (
-    <BasicLayout title="Resources" loading={isLoading}>
-      <Form>
-        <Image
-          source={{
-            uri: user.avatar,
-          }}
-          style={{
-            height: 200,
-            flex: 1,
-          }}
-        />
-        <Item floatingLabel>
-          <Label>Fisrt Name</Label>
-          <Input value={user.first_name} />
-        </Item>
-        <Item floatingLabel>
-          <Label>Last Name</Label>
-          <Input value={user.last_name} />
-        </Item>
-        <Item floatingLabel last>
-          <Label>Email</Label>
-          <Input value={user.email} />
-        </Item>
-      </Form>
-    </BasicLayout>
+    <MainLayout title="Resources" loading={isLoading}>
+      <List>{getItems()}</List>
+    </MainLayout>
   );
 };

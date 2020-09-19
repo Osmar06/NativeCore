@@ -7,7 +7,7 @@ import {Status} from '../../constants';
 
 export default UserDetailScreen = ({route}) => {
   const {id} = route.params;
-  const getDataById = useStoreActions((actions) => actions.users.getDataById);
+  const getDataById = useStoreActions((actions) => actions.users.fetchById);
 
   const {user = {}, status} = useStoreState((state) => ({
     user: state.users.user,

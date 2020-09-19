@@ -13,12 +13,10 @@ import {
   Icon,
   Text,
   Drawer,
-  Spinner,
 } from 'native-base';
-import theme from '../../themes';
-import {SideBar} from '../../components';
+import {Loading, SideBar} from '../../components';
 
-const MainLayout = ({loading, children}) => {
+const MainLayout = ({loading, title = '', children}) => {
   const drawer = useRef();
 
   const closeDrawer = () => {
@@ -28,11 +26,11 @@ const MainLayout = ({loading, children}) => {
     drawer.current._root.open();
   };
 
-  const getElement = () =>
-    loading ? <Spinner color={theme.primaryColor} /> : children;
-
   return (
-    <Drawer ref={drawer} content={<SideBar />} onClose={() => closeDrawer()}>
+    <Drawer
+      ref={drawer}
+      content={<SideBar onNavigate={closeDrawer} />}
+      onClose={() => closeDrawer()}>
       <Container>
         <Header>
           <Left>
@@ -41,11 +39,13 @@ const MainLayout = ({loading, children}) => {
             </Button>
           </Left>
           <Body>
-            <Title>Header</Title>
+            <Title>{title}</Title>
           </Body>
           <Right />
         </Header>
-        <Content>{getElement()}</Content>
+        <Content>
+          <Loading loading={loading}>{children}</Loading>
+        </Content>
         <Footer>
           <FooterTab>
             <Button full>

@@ -1,7 +1,6 @@
 import {action, thunk} from 'easy-peasy';
 import BaseModel from './Base';
-import {AppState, Status} from '../../constants';
-import {ApiService} from '../index';
+import {AppState, Status, Storage} from '../../constants';
 import {StorageService} from '../../services/StorageService';
 
 const actions = {
@@ -13,32 +12,31 @@ const actions = {
   }),
 };
 
-const checkLogin = thunk(async (actions, payload, {dispatch, injections}) => {
-  const credentials = await StorageService.get('credentials');
+const checkLogin = thunk(async (actions, payload, {injections}) => {
+  const {api} = injections;
+  const credentials = await StorageService.get(Storage.CREDENTIALS);
 
   if (credentials && credentials.token) {
-    ApiService.setAuthorizationHeader(credentials.token);
+    api.setAuthorizationHeader(credentials.token);
     actions.changeAppState(AppState.PRIVATE);
     actions.mergeState(credentials);
   } else actions.changeAppState(AppState.PUBLIC);
 });
 
-const loginUser = thunk(async (actions, payload, {dispatch}) => {
+const loginUser = thunk(async (actions, payload, {injections}) => {
+  const {api} = injections;
   if (!payload.email || !payload.password) return;
 
   actions.updateStatus(Status.FETCHING);
 
-  let response = await ApiService.loginUser(payload);
+  let response = await api.auth.login(payload);
 
   actions.updateStatus(response.ok ? Status.SUCCESS : Status.FAILED);
-  if (!response.ok) {
-    await StorageService.remove('credentials');
-    return actions.showError(response.data.error);
-  }
+  if (!response.ok) return actions.showError(response.data.error);
 
   actions.changeAppState(AppState.PRIVATE);
-  ApiService.setAuthorizationHeader(response.data.token);
-  await StorageService.add('credentials', response.data);
+  api.setAuthorizationHeader(response.data.token);
+  await StorageService.add(Storage.CREDENTIALS, response.data);
 });
 
 export default {

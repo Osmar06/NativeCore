@@ -11,14 +11,14 @@ export default function showToast(message, buttonText, type, duration = 3000) {
   });
 }
 
-export function showErrorToast(message, buttonText) {
+export function showError(message, buttonText) {
   showToast(message, buttonText, 'danger');
 }
 
-export function showSuccessToast(message, buttonText) {
+export function showSuccess(message, buttonText) {
   showToast(message, buttonText, 'success');
 }
 
-export function showWarningToast(message, buttonText) {
+export function showWarning(message, buttonText) {
   showToast(message, buttonText, 'warning');
 }

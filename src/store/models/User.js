@@ -1,11 +1,11 @@
 import {action, thunk} from 'easy-peasy';
 import BaseModel from './Base';
 import {Status} from '../../constants';
-import {ApiService} from '../index';
 
-const getData = thunk(async (actions, payload) => {
+const fetch = thunk(async (actions, payload, {injections}) => {
+  const {api} = injections;
   actions.updateStatus(Status.FETCHING);
-  const response = await ApiService.getUsers(payload);
+  const response = await api.users.get(payload);
   actions.updateStatus(response.ok ? Status.SUCCESS : Status.FAILED);
   if (!response.ok) {
     actions.setData([]);
@@ -16,9 +16,10 @@ const getData = thunk(async (actions, payload) => {
   actions.setData(data);
 });
 
-const getDataById = thunk(async (actions, payload) => {
+const fetchById = thunk(async (actions, payload, {injections}) => {
+  const {api} = injections;
   actions.updateStatus(Status.FETCHING);
-  const response = await ApiService.getUser(payload);
+  const response = await api.users.getById(payload);
   actions.updateStatus(response.ok ? Status.SUCCESS : Status.FAILED);
   if (!response.ok) {
     actions.setData({});
@@ -31,8 +32,8 @@ const getDataById = thunk(async (actions, payload) => {
 
 const UserModel = {
   ...BaseModel(),
-  getData,
-  getDataById,
+  fetch,
+  fetchById,
   setData: action((state, data) => {
     state.data = data;
   }),

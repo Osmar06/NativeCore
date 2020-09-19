@@ -1,10 +1,10 @@
 // @flow
 
 import color from 'color';
-import { Platform, Dimensions, PixelRatio } from 'react-native';
-import config from '../..'
+import {Platform, Dimensions, PixelRatio} from 'react-native';
+import config from '../..';
 
-import { PLATFORM } from './commonColor';
+import {PLATFORM} from './commonColor';
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -23,15 +23,15 @@ export default {
 
   //Accordion
   headerStyle: '#edebed',
-  iconStyle: config.darkColor,
+  iconStyle: config.colors.colors.dark,
   contentStyle: '#f5f4f5',
-  expandedIconStyle: config.darkColor,
+  expandedIconStyle: config.colors.dark,
   accordionBorderColor: '#d3d3d3',
 
   // ActionSheet
   elevation: 4,
   containerTouchableBackgroundColor: 'rgba(0,0,0,0.4)',
-  innerTouchableBackgroundColor: '#fff',
+  innerTouchableBackgroundColor: config.colors.white,
   listItemHeight: 50,
   listItemBorderColor: 'transparent',
   marginHorizontal: -15,
@@ -49,7 +49,7 @@ export default {
 
   // Badge
   badgeBg: '#ED1727',
-  badgeColor: '#fff',
+  badgeColor: config.colors.white,
   badgePadding: 0,
 
   // Button
@@ -106,7 +106,7 @@ export default {
   },
 
   // Card
-  cardDefaultBg: '#fff',
+  cardDefaultBg: config.colors.white,
   cardBorderColor: '#ccc',
   cardBorderRadius: 2,
   cardItemPadding: platform === PLATFORM.IOS ? 10 : 12,
@@ -121,22 +121,22 @@ export default {
   CheckboxFontSize: 17,
   checkboxBgColor: '#039BE5',
   checkboxSize: 20,
-  checkboxTickColor: '#fff',
+  checkboxTickColor: config.colors.white,
 
   // Color
-  brandPrimary: config.primaryColor,
-  brandInfo: config.infoColor,
-  brandSuccess: config.succesColor,
-  brandDanger: config.dangerColor,
-  brandWarning: config.warningColor,
-  brandDark: config.darkColor,
-  brandLight: config.lightColor,
+  brandPrimary: config.colors.primary,
+  brandInfo: config.colors.info,
+  brandSuccess: config.colors.success,
+  brandDanger: config.colors.danger,
+  brandWarning: config.colors.warning,
+  brandDark: config.colors.dark,
+  brandLight: config.colors.light,
 
   // Container
-  containerBgColor: '#fff',
+  containerBgColor: config.colors.white,
 
   // Date Picker
-  datePickerTextColor: config.darkColor,
+  datePickerTextColor: config.colors.dark,
   datePickerBg: 'transparent',
 
   // FAB
@@ -158,37 +158,33 @@ export default {
 
   // Footer
   footerHeight: 55,
-  footerDefaultBg: config.primaryColor,
+  footerDefaultBg: config.colors.primary,
   footerPaddingBottom: 0,
 
   // FooterTab
   tabBarTextColor: '#bfc6ea',
   tabBarTextSize: 11,
-  activeTab: '#fff',
+  activeTab: config.colors.white,
   sTabBarActiveTextColor: '#007aff',
-  tabBarActiveTextColor: '#fff',
-  tabActiveBgColor: config.primaryColor,
+  tabBarActiveTextColor: config.colors.white,
+  tabActiveBgColor: config.colors.primary,
 
   // Header
-  toolbarBtnColor: '#fff',
-  toolbarDefaultBg: config.primaryColor,
+  toolbarBtnColor: config.colors.white,
+  toolbarDefaultBg: config.colors.primary,
   toolbarHeight: 56,
   toolbarSearchIconSize: 23,
-  toolbarInputColor: '#fff',
+  toolbarInputColor: config.colors.white,
   searchBarHeight: platform === PLATFORM.IOS ? 30 : 40,
   searchBarInputHeight: platform === PLATFORM.IOS ? 40 : 50,
-  toolbarBtnTextColor: '#fff',
-  toolbarDefaultBorder: config.primaryColor,
+  toolbarBtnTextColor: config.colors.white,
+  toolbarDefaultBorder: config.colors.primary,
   iosStatusbar: 'light-content',
   get statusBarColor() {
-    return color(this.toolbarDefaultBg)
-      .darken(0.2)
-      .hex();
+    return color(this.toolbarDefaultBg).darken(0.2).hex();
   },
   get darkenHeader() {
-    return color(this.tabBgColor)
-      .darken(0.03)
-      .hex();
+    return color(this.tabBgColor).darken(0.03).hex();
   },
 
   // Icon
@@ -224,7 +220,7 @@ export default {
   listItemPadding: 12,
   listNoteColor: '#808080',
   listNoteSize: 13,
-  listItemSelected: config.primaryColor,
+  listItemSelected: config.colors.primary,
 
   // Progress Bar
   defaultProgressColor: '#E4202D',
@@ -232,38 +228,38 @@ export default {
 
   // Radio Button
   radioBtnSize: 23,
-  radioSelectedColorAndroid: config.primaryColor,
+  radioSelectedColorAndroid: config.colors.primary,
   radioBtnLineHeight: 24,
   get radioColor() {
     return this.brandPrimary;
   },
 
   // Segment
-  segmentBackgroundColor: config.primaryColor,
-  segmentActiveBackgroundColor: '#fff',
-  segmentTextColor: '#fff',
-  segmentActiveTextColor: config.primaryColor,
-  segmentBorderColor: '#fff',
-  segmentBorderColorMain: config.primaryColor,
+  segmentBackgroundColor: config.colors.primary,
+  segmentActiveBackgroundColor: config.colors.white,
+  segmentTextColor: config.colors.white,
+  segmentActiveTextColor: config.colors.primary,
+  segmentBorderColor: config.colors.white,
+  segmentBorderColorMain: config.colors.primary,
 
   // Spinner
   defaultSpinnerColor: '#45D56E',
   inverseSpinnerColor: '#1A191B',
 
   // Tab
-  tabDefaultBg: config.primaryColor,
+  tabDefaultBg: config.colors.primary,
   topTabBarTextColor: '#b3c7f9',
-  topTabBarActiveTextColor: '#fff',
-  topTabBarBorderColor: '#fff',
-  topTabBarActiveBorderColor: '#fff',
+  topTabBarActiveTextColor: config.colors.white,
+  topTabBarBorderColor: config.colors.white,
+  topTabBarActiveBorderColor: config.colors.white,
 
   // Tabs
   tabBgColor: '#F8F8F8',
   tabFontSize: 15,
 
   // Text
-  textColor: config.darkColor,
-  inverseTextColor: '#fff',
+  textColor: config.colors.dark,
+  inverseTextColor: config.colors.white,
   noteFontSize: 14,
   get defaultTextColor() {
     return this.textColor;
@@ -273,8 +269,8 @@ export default {
   titleFontfamily: 'Roboto',
   titleFontSize: 19,
   subTitleFontSize: 14,
-  subtitleColor: '#FFF',
-  titleFontColor: '#FFF',
+  subtitleColor: config.colors.white,
+  titleFontColor: config.colors.white,
 
   // Other
   borderRadiusBase: 2,
@@ -293,13 +289,13 @@ export default {
       topInset: 24,
       leftInset: 0,
       rightInset: 0,
-      bottomInset: 34
+      bottomInset: 34,
     },
     landscape: {
       topInset: 0,
       leftInset: 44,
       rightInset: 44,
-      bottomInset: 21
-    }
-  }
+      bottomInset: 21,
+    },
+  },
 };

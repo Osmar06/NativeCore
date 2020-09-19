@@ -1,4 +1,5 @@
 import React from 'react';
+import {StackActions} from '@react-navigation/native';
 
 export const navigationRef = React.createRef();
 export const isMountedRef = React.createRef();
@@ -19,8 +20,9 @@ const navigate = (routeName, params) => {
 };
 
 const navigateAndReset = (routeName, params) => {
-  navigate(routeName, params);
-  reset();
+  if (isMountedRef.current && navigationRef.current) {
+    navigationRef.current.dispatch(StackActions.replace(routeName, params));
+  }
 };
 
 const goBack = () => {
@@ -30,16 +32,8 @@ const goBack = () => {
   }
 };
 
-const reset = () => {
-  if (isMountedRef.current && navigationRef.current) {
-    // Perform navigation if the app has mounted
-    navigationRef.current.reset();
-  }
-};
-
 export const NavigationService = {
   navigate,
   goBack,
-  reset,
   navigateAndReset,
 };

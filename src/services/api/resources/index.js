@@ -3,9 +3,9 @@ export const Uris = {
 };
 
 export default createApiResource = (api) => {
-  const getResources = () => api.get(Uris.RESOURCE);
+  const get = () => api.get(Uris.RESOURCE);
 
   return {
-    getResources,
+    get,
   };
 };

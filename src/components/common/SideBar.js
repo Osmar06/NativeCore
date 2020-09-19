@@ -5,11 +5,12 @@ import Routes from '../../navigation/routes';
 import {NavigationService} from '../../navigation';
 import useAuth from '../../services/auth';
 
-export default SideBar = () => {
+export default SideBar = ({onNavigate}) => {
   const {logout} = useAuth();
   const routes = [
     {title: 'Home', route: Routes.HOME},
-    {title: 'Resources', route: Routes.RESOURCE},
+    {title: 'Users', route: Routes.USERS},
+    {title: 'Resources', route: Routes.RESOURCES},
     {title: 'Logout', handler: logout},
   ];
 
@@ -20,7 +21,10 @@ export default SideBar = () => {
         onPress={
           data.handler
             ? data.handler
-            : () => NavigationService.navigate(data.route)
+            : () => {
+                if (onNavigate && onNavigate instanceof Function) onNavigate();
+                NavigationService.navigate(data.route);
+              }
         }>
         <Text>{data.title}</Text>
       </ListItem>
